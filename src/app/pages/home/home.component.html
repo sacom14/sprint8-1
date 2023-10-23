@@ -1,1 +1,62 @@
-<p>home works!</p>
+<section>
+  <article class="mt-5 container">
+    <div class="card">
+      <div class="card-header">
+        <h4>Students List</h4>
+      </div>
+      <div class="card-body">
+
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Last name</th>
+              <th>Class</th>
+              <th>Email</th>
+              <th>DNI</th>
+              <th>Birthdate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of studentList">
+              <td>{{student.id_Student}}</td>
+              <td>{{student.name_Student}}</td>
+              <td>{{student.last_Name_Student}}</td>
+              <td>{{student.class_Student}}</td>
+              <td>{{student.email_Student}}</td>
+              <td>{{student.dni_Student}}</td>
+              <td>{{student.birthdate_Student}}</td>
+              <td>
+                <button *ngIf="!wantEdit" (click)="editStudent()" class="btn btn-success">Edit</button>
+                <button *ngIf="wantEdit" (click)="updateStudent()" class="btn btn-success">Save Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          New student
+        </button>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add new student</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <app-home-modal></app-home-modal>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </article>
+</section>

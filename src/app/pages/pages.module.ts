@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { GraphicComponent } from './graphic/graphic.component';
+import { ModalComponent } from './home/modal/modal.component';
 
 
 
@@ -12,7 +13,8 @@ import { GraphicComponent } from './graphic/graphic.component';
     HomeComponent,
     MapComponent,
     FullCalendarComponent,
-    GraphicComponent
+    GraphicComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule

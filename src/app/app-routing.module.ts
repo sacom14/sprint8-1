@@ -8,19 +8,23 @@ import { GraphicComponent } from './pages/graphic/graphic.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    title: 'School-Lara'
   },
   {
     path: 'map',
-    component: MapComponent
+    component: MapComponent,
+    title: 'School-Lara'
   },
   {
     path: 'fullCalendar',
-    component: FullCalendarComponent
+    component: FullCalendarComponent,
+    title: 'School-Lara'
   },
   {
     path: 'graphic',
-    component: GraphicComponent
+    component: GraphicComponent,
+    title: 'School-Lara'
   },
   {
     path: '**',
