@@ -1,15 +1,34 @@
 <!-- Modal -->
 <article>
-  <form autocomplete="off">
-
+  <form [formGroup]="myFormRegister" class="form-group" (ngSubmit)="onSubmit()" autocomplete="off">
     <!-- Nombre -->
     <div class="row mb-3">
-      <label class="col-lg-3 col-form-label">Nombre</label>
+      <label class="col-lg-3 col-form-label">Name</label>
       <div class="col-md-9 col-lg-12 w-100">
-        <input type="text" class="form-control" formControlName="name" placeholder="Nombre del usuario">
+        <input type="text" class="form-control" formControlName="studentName" placeholder="Name">
         <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
                 It must be in first and last name format
               </span> -->
+      </div>
+    </div>
+    <!-- Apellidos -->
+    <div class="row mb-3">
+      <label class="col-lg-3 col-form-label">Last name</label>
+      <div class="col-md-9 col-lg-12 w-100">
+        <input type="text" class="form-control" formControlName="studentLastName" placeholder="Last name">
+        <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
+                    It must be in first and last name format
+                  </span> -->
+      </div>
+    </div>
+    <!-- Clase -->
+    <div class="row mb-3">
+      <label class="col-lg-3 col-form-label">Student class</label>
+      <div class="col-md-9 col-lg-12 w-100">
+        <input type="text" class="form-control" formControlName="studentClass" placeholder="Student class">
+        <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
+                        It must be in first and last name format
+                      </span> -->
       </div>
     </div>
 
@@ -17,10 +36,32 @@
     <div class="row mb-3">
       <label class="col-lg-3 col-form-label">Email</label>
       <div class="col-md-9 col-lg-12 w-100">
-        <input type="email" class="form-control" formControlName="email" placeholder="Email del usuario">
-        <!-- <span *ngIf="isValidField('email')" class="form-text text-danger">
-                The email has an incorrect format ex. xxx@xxx.xx
-              </span> -->
+        <input type="text" class="form-control" formControlName="studentEmail" placeholder="xxxxx@xxxxx.xxx">
+        <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
+                    It must be in first and last name format
+                  </span> -->
+      </div>
+    </div>
+
+    <!-- DNI -->
+    <div class="row mb-3">
+      <label class="col-lg-3 col-form-label">DNI</label>
+      <div class="col-md-9 col-lg-12 w-100">
+        <input type="text" class="form-control" formControlName="studentDni" placeholder="XXXXXXXXL">
+        <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
+                        It must be in first and last name format
+                      </span> -->
+      </div>
+    </div>
+
+    <!-- Año nacimiento -->
+    <div class="row mb-3">
+      <label class="col-lg-3 col-form-label">Birthdate</label>
+      <div class="col-md-9 col-lg-12 w-100">
+        <input type="text" class="form-control" formControlName="studentBirthdate" placeholder="yyyy-mm-dd">
+        <!-- <span *ngIf="isValidField('name')" class="form-text text-danger">
+                    It must be in first and last name format
+                  </span> -->
       </div>
     </div>
   </form>
@@ -29,6 +70,6 @@
 <footer>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-    <button type="button" class="btn btn-success">Save student</button>
+    <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="newStudentRegister()">Save student</button>
   </div>
 </footer>

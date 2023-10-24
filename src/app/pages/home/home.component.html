@@ -16,6 +16,7 @@
               <th>Email</th>
               <th>DNI</th>
               <th>Birthdate</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -28,9 +29,9 @@
               <td>{{student.dni_Student}}</td>
               <td>{{student.birthdate_Student}}</td>
               <td>
-                <button *ngIf="!wantEdit" (click)="editStudent()" class="btn btn-success">Edit</button>
-                <button *ngIf="wantEdit" (click)="updateStudent()" class="btn btn-success">Save Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button (click)="editStudent(student.id_Student)" class="btn btn-success">Edit</button>
+                <!-- <button *ngIf="wantEdit" (click)="updateStudent()" class="btn btn-success">Save Edit</button> -->
+                <button (click)="deleteStudent(student.id_Student)" type="button" class="btn btn-danger">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -51,11 +52,12 @@
               </div>
               <div class="modal-body">
                 <app-home-modal></app-home-modal>
+                <!-- <app-moda-edit-student *ngIf="wantEdit"></app-moda-edit-student> -->
               </div>
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </article>

@@ -11,7 +11,7 @@ import { StudentService } from 'src/app/service/student-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  public studentList: StudentInterface[] = []
+  public studentList: StudentInterface[] = [];
   public wantEdit: boolean = false;
 
   constructor(private studentService: StudentService) { }
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   //hacer que apareza o desaparezca el input para editar los campos
-  editStudent():void{
+  editStudent(id_Student: number):void{
     this.wantEdit = true;
   }
 
@@ -32,5 +32,13 @@ export class HomeComponent implements OnInit {
     this.wantEdit = false;
   }
 
-
+  //eliminar estudiante
+  deleteStudent(id_Student:number){
+    this.studentService.deleteStudent(id_Student).subscribe( data => {
+      console.log(data);
+    });
+    this.studentService.studentList.subscribe((students: StudentInterface[]) => {
+      this.studentList = students;
+    });
+  }
 }
