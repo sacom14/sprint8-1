@@ -4,8 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
 import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 import { GraphicComponent } from './graphic/graphic.component';
-import { ModalComponent } from './home/modal/modal.component';
+import { ModalComponent } from './home/register-modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateModalComponent } from './home/update-modal/update-modal.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FullCalendarComponent,
     GraphicComponent,
     ModalComponent,
+    UpdateModalComponent,
 
   ],
   imports: [

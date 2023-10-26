@@ -29,7 +29,7 @@
               <td>{{student.dni_Student}}</td>
               <td>{{student.birthdate_Student}}</td>
               <td>
-                <button (click)="editStudent(student.id_Student)" class="btn btn-success">Edit</button>
+                <button (click)="editStudent(student.id_Student)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
                 <!-- <button *ngIf="wantEdit" (click)="updateStudent()" class="btn btn-success">Save Edit</button> -->
                 <button (click)="deleteStudent(student.id_Student)" type="button" class="btn btn-danger">Delete</button>
               </td>
@@ -41,7 +41,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           New student
         </button>
-
+        <!-- Formulario modal registro estudiante -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
           aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
@@ -57,6 +57,22 @@
             </div>
           </div>
         </div>
+        <!-- Formulario modal actualizar estudiante -->
+        <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit student</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <app-update-modal></app-update-modal>
+              <!-- <app-moda-edit-student *ngIf="wantEdit"></app-moda-edit-student> -->
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </article>
