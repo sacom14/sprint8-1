@@ -22,8 +22,6 @@ import { PagesModule } from './pages/pages.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
-    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

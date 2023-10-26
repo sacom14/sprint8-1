@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.studentList.subscribe((students: StudentInterface[]) => {
       this.studentList = students;
+      console.log(this.studentList);
     });
   }
 
