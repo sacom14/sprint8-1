@@ -15,6 +15,15 @@ export class StudentService {
   private _studentList: BehaviorSubject<StudentInterface[]> = new BehaviorSubject<StudentInterface[]>([]); //va a contener toda la lista de estudiantes
   private _studentUrl: string = "http://localhost:4000/api/student/";
 
+  // Define las cabeceras CORS
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json', // Especifica el tipo de contenido
+    }),
+  };
+
+  public studentSelected: StudentInterface[]=[];
+
   constructor(private http: HttpClient) {
     this.getStudents();
   }
@@ -34,20 +43,24 @@ export class StudentService {
     return this.http.get<StudentInterface[]>(`${this._studentUrl}${id}`);
   }
 
+  //obtener estudiante seleccionado
+  getSelectedStudent(student: StudentInterface){
+    this.studentSelected.push(student);
+  }
+
   //agregar estudiantes
-  addStudent(form: StudentInterface) {
-    // Define las cabeceras CORS
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json', // Especifica el tipo de contenido
-      }),
-    };
-    return this.http.post<string>(this._studentUrl + 'add', form);
+  addStudent(student: StudentInterface) {
+    this.httpOptions;
+    return this.http.post<string>(this._studentUrl + 'add', student);
   }
 
   //actualizar estudiatne
   updateStudent(student: StudentInterface) {
+    this.httpOptions;
+    console.log(student);
+    console.log(student.id_Student);
     return this.http.put<StudentInterface>(`${this._studentUrl}update/${student.id_Student}`, student);
+
   }
 
   //eliminar estudiante
