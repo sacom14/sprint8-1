@@ -5,7 +5,7 @@ import { FullCalendarComponent } from './full-calendar.component';
 describe('FullCalendarComponent', () => {
   let component: FullCalendarComponent;
   let fixture: ComponentFixture<FullCalendarComponent>;
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [FullCalendarComponent]
@@ -17,5 +17,6 @@ describe('FullCalendarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+
   });
 });

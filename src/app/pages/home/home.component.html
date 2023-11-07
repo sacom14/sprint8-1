@@ -29,7 +29,7 @@
               <td>{{student.dni_Student}}</td>
               <td>{{student.birthdate_Student}}</td>
               <td>
-                <button (click)="selectStudent(student)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
+                <button (click)="selectStudent(student)" (click)="openModal()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
                 <!-- <button *ngIf="wantEdit" (click)="updateStudent()" class="btn btn-success">Save Edit</button> -->
                 <button (click)="deleteStudent(student.id_Student)" type="button" class="btn btn-danger">Delete</button>
               </td>
@@ -57,7 +57,7 @@
           </div>
         </div>
         <!-- Formulario modal actualizar estudiante -->
-        <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="staticBackdropEdit" (shown.bs.modal)="modalOpen = true" (hidden.bs.modal)="modalOpen = false" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">

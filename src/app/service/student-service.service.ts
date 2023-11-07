@@ -22,7 +22,7 @@ export class StudentService {
     }),
   };
 
-  public studentSelected: StudentInterface[]=[];
+  public studentSelected: BehaviorSubject<StudentInterface[]> = new BehaviorSubject<StudentInterface[]>([]);;
 
   constructor(private http: HttpClient) {
     this.getStudents();
@@ -44,8 +44,16 @@ export class StudentService {
   }
 
   //obtener estudiante seleccionado
-  getSelectedStudent(student: StudentInterface){
-    this.studentSelected.push(student);
+  getSelectedStudent(student: StudentInterface) {
+    // Obtiene el valor actual del BehaviorSubject
+    const currentStudents = this.studentSelected.value;
+
+    // Modifica el array y agrega el estudiante seleccionado
+    currentStudents.push(student);
+
+    // Emite el nuevo valor actualizado
+    this.studentSelected.next(currentStudents);
+
   }
 
   //agregar estudiantes
@@ -57,8 +65,6 @@ export class StudentService {
   //actualizar estudiatne
   updateStudent(student: StudentInterface) {
     this.httpOptions;
-    console.log(student);
-    console.log(student.id_Student);
     return this.http.put<StudentInterface>(`${this._studentUrl}update/${student.id_Student}`, student);
 
   }

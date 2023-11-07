@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentInterface } from 'src/app/interface/student.interface';
 import { StudentService } from 'src/app/service/student-service.service';
@@ -11,7 +11,10 @@ import { StudentService } from 'src/app/service/student-service.service';
 export class UpdateModalComponent implements OnInit {
 
   public studentSelected: StudentInterface[] = []; //para luego mostrarlos en cada input
-  public studentIdSelected: string = '';
+  public studentIdSelected: string = ''; //todo
+
+  @Input() modalOpen: boolean = false; // Propiedad de entrada para el estado del modal
+  // ...
 
   public myFormRegister: FormGroup = this.fb.group({
     studentId: [''],
@@ -23,10 +26,18 @@ export class UpdateModalComponent implements OnInit {
     studentBirthdate: ['', [Validators.required]],
   });
 
+
+
   constructor(private fb: FormBuilder, private studentService: StudentService) { }
 
   ngOnInit(): void {
-    this.studentSelected =  this.studentService.studentSelected;
+    // No realiza la suscripción al BehaviorSubject aquí
+    if (this.modalOpen) {
+      this.studentService.studentSelected.subscribe((students: StudentInterface[]) => {
+        this.studentSelected = students;
+      });
+      console.log(this.studentIdSelected);
+    }
   }
 
   //para que se muestre que todos los formularios han sido tocados.

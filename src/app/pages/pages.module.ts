@@ -7,6 +7,7 @@ import { GraphicComponent } from './graphic/graphic.component';
 import { ModalComponent } from './home/register-modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateModalComponent } from './home/update-modal/update-modal.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UpdateModalComponent } from './home/update-modal/update-modal.component
   imports: [
     ReactiveFormsModule,
     FormsModule,
-
+    FullCalendarModule,
+    
     CommonModule
   ]
 })
