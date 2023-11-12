@@ -23,27 +23,27 @@ export class FullCalendarComponent implements OnInit {
 
     this.events = [
       {
-        title: "Evento 1",
-        start: new Date(),
-        description: "Evento 1",
+        title: "Tutoria",
+        start: "2023-11-10",
+        description: "Tutoria con Maria",
       },
       {
-        title: "Evento 2",
-        start: new Date(new Date().getTime()+86400000),
-        description: "Evento 2",
+        title: "Excursión",
+        start: "2023-11-12",
+        description: "Excursión al CosmoCaixa",
       },
       {
-        title: "Evento 3",
-        start: new Date(new Date().getTime()+86400000*2),
-        end: new Date(new Date().getTime()+86400000*3),
-        description: "Evento 3",
+        title: "Colonias",
+        start: "2023-11-19",
+        end: "2023-11-22",
+        description: "Colonias a casa rural La Garriga",
       }
     ]
   }
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
+    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     headerToolbar: {
       left: 'prev,next,today',
       center: 'title',
@@ -51,6 +51,6 @@ export class FullCalendarComponent implements OnInit {
     },
   };
 
-  
+
 
 }

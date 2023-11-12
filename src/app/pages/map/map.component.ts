@@ -14,9 +14,10 @@ export class MapComponent implements AfterViewInit {
 
   constructor(private locationsService:LocationsService) { }
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
 
-    if (!this.locationsService.useLocation) throw Error ('Any locations');
+    console.log('loc',this.locationsService.useLocation)
+    let location = await this.locationsService.getUserLocation();
     //import the code from mapbox
     const map = new Map({
       container: this.mapDivElement.nativeElement, // container ID

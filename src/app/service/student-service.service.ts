@@ -1,8 +1,8 @@
 import { Injectable, numberAttribute } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, finalize } from 'rxjs';
 
-import { StudentInterface } from 'src/app/interface/student.interface';
+import { MonthApiInterface, StudentInterface } from 'src/app/interface/student.interface';
 
 
 
@@ -14,6 +14,7 @@ export class StudentService {
   //BehaviorSubject => emite una señal cada vez que se actualiza la lista de estudiantes.
   private _studentList: BehaviorSubject<StudentInterface[]> = new BehaviorSubject<StudentInterface[]>([]); //va a contener toda la lista de estudiantes
   private _studentUrl: string = "http://localhost:4000/api/student/";
+  private _monthList: BehaviorSubject<MonthApiInterface[]> = new BehaviorSubject<MonthApiInterface[]>([]);
 
   // Define las cabeceras CORS
   public httpOptions = {
@@ -22,14 +23,20 @@ export class StudentService {
     }),
   };
 
+  public studentIdSelected: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public studentSelected: BehaviorSubject<StudentInterface[]> = new BehaviorSubject<StudentInterface[]>([]);;
 
-  constructor(private http: HttpClient) {
-    this.getStudents();
-  }
 
   get studentList(): Observable<StudentInterface[]> {
     return this._studentList.asObservable(); //para asegurarnos que solo se pueda acceder con un Observable, y no se pueda modificar de otra manera
+  }
+
+  get monthList(): Observable<MonthApiInterface[]> {
+    return this._monthList.asObservable();
+  }
+
+  constructor(private http: HttpClient) {
+    this.getStudents();
   }
 
   //obtener estudiantes
@@ -39,8 +46,12 @@ export class StudentService {
     });
   }
 
+
   getStudentById(id: number) {
-    return this.http.get<StudentInterface[]>(`${this._studentUrl}${id}`);
+    this.studentIdSelected.next(id);
+    return this.http.get<StudentInterface[]>(`${this._studentUrl}${id}`).subscribe((data: StudentInterface[]) => {
+      this.studentSelected.next(data);
+    });
   }
 
   //obtener estudiante seleccionado
@@ -53,7 +64,6 @@ export class StudentService {
 
     // Emite el nuevo valor actualizado
     this.studentSelected.next(currentStudents);
-
   }
 
   //agregar estudiantes
@@ -65,8 +75,16 @@ export class StudentService {
   //actualizar estudiatne
   updateStudent(student: StudentInterface) {
     this.httpOptions;
-    return this.http.put<StudentInterface>(`${this._studentUrl}update/${student.id_Student}`, student);
-
+    const { id_Student, ...rest } = student; //separar id:student del resto de los datos
+    return this.http.put<StudentInterface>(`${this._studentUrl}update/${id_Student}`, rest, this.httpOptions)
+      .subscribe({
+        next: (data) => {
+          alert(data);
+        },
+        error: (error) => {
+          console.error('Error en la actualización', error);
+        }
+      });
   }
 
   //eliminar estudiante
@@ -74,4 +92,16 @@ export class StudentService {
     return this.http.delete<string>(`${this._studentUrl}delete/${id}`);
   }
 
+  //get quantity of months
+  getQuantityMonth() {
+    return this.http.get<MonthApiInterface[]>(`${this._studentUrl}quantityMonth`).subscribe((resp: MonthApiInterface[]) => {
+      this._monthList.next(resp);
+    });
+  }
+
+  //get quantity of months
+  getMonth(): Observable<MonthApiInterface[]> {
+
+    return this.http.get<MonthApiInterface[]>(`${this._studentUrl}quantityMonth`)
+  }
 }

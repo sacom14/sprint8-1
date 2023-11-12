@@ -32,8 +32,8 @@ export class ModalComponent {
       this.studentService.addStudent(this.myFormRegister.value).subscribe(data=> {
         alert (data);
       });
+
+      window.location.reload();
     };
-
-
   };
 }

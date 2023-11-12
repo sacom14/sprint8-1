@@ -15,7 +15,7 @@ export class LocationsService {
     this.getUserLocation();
   }
 
-  getUserLocation(): Promise<[number, number]>{
+  async getUserLocation(): Promise<[number, number]>{
     return new Promise ( (resolve, reject) => {
 
       navigator.geolocation.getCurrentPosition(
@@ -28,9 +28,6 @@ export class LocationsService {
           reject();
         }
       );
-
-
     });
   }
-
 }

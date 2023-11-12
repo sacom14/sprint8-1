@@ -7,3 +7,9 @@ export interface StudentInterface {
   dni_Student:       string;
   birthdate_Student: Date;
 }
+
+export interface MonthApiInterface{
+  month:    string;
+  quantity: number;
+}
+
