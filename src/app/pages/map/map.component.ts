@@ -15,10 +15,7 @@ export class MapComponent implements AfterViewInit {
   constructor(private locationsService:LocationsService) { }
 
   async ngAfterViewInit(): Promise<void> {
-
-    console.log('loc',this.locationsService.useLocation)
-    let location = await this.locationsService.getUserLocation();
-    //import the code from mapbox
+    let location = await this.locationsService.getUserLocation(); //import the code from mapbox
     const map = new Map({
       container: this.mapDivElement.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL

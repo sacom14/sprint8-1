@@ -26,13 +26,11 @@ export class HomeComponent implements OnInit {
   // cuando el modal de edit se abre
   openModal() {
     this.modalOpen = true;
-    console.log('modal',this.modalOpen)
   }
 
   // Cuando el modal de edit se cierra
   closeModal() {
     this.modalOpen = false;
-    console.log('modal',this.modalOpen)
   }
 
   selectedStudent(studentId: number){

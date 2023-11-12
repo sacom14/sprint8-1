@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentInterface } from 'src/app/interface/student.interface';
 import { StudentService } from 'src/app/service/student-service.service';
+import { ValidatorsService } from 'src/app/service/validators.service';
 
 @Component({
   selector: 'app-update-modal',
@@ -12,21 +13,21 @@ export class UpdateModalComponent{
 
   public studentSelected: StudentInterface[] = []; //para luego mostrarlos en cada input
   public studentIdSelected!: string; //todo
+  public showButton:boolean = false;
 
   @Input() modalOpen: boolean = false; // Propiedad de entrada para el estado del modal
-  // ...
 
   public myFormRegister: FormGroup = this.fb.group({
     id_Student: [`${this.studentIdSelected}`],
-    name_Student: ['', [Validators.required]],
-    last_Name_Student: ['', [Validators.required]],
-    class_Student: ['', [Validators.required]],
-    email_Student: ['', [Validators.required]],
-    dni_Student: ['', [Validators.required]],
-    birthdate_Student: ['', [Validators.required]],
+    name_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.nameAndLastNamePattern)]],
+    last_Name_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.nameAndLastNamePattern)]],
+    class_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.classNamePattern)]],
+    email_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
+    dni_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.dniPattern)]],
+    birthdate_Student: ['', [Validators.required, Validators.pattern(this.validatorsService.birthdatePattern)]],
   });
 
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(private fb: FormBuilder, private studentService: StudentService, private validatorsService:ValidatorsService) {
     this.studentService.studentIdSelected.subscribe((studentId) =>{
       this.studentIdSelected = studentId.toString();
       this.myFormRegister.patchValue({
@@ -60,11 +61,20 @@ export class UpdateModalComponent{
 
   public updateStudent(): void {
     if (this.myFormRegister.valid) {
-      console.log(this.myFormRegister.value);
       this.studentService.updateStudent(this.myFormRegister.value);
       window.location.reload();
     };
   };
+
+  public isValidField(field: string) {
+    if(this.myFormRegister.valid){
+      this.showButton = true;
+    } else {
+      this.showButton = false;
+    }
+    return this.validatorsService.isValidField(this.myFormRegister, field);
+  };
+
 
   formatBirthdate(dateString: Date): string {
     const date = new Date(dateString); // Convierte la cadena a un objeto Date
