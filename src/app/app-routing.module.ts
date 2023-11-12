@@ -9,22 +9,22 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    title: 'School-Lara'
+    title: 'School'
   },
   {
     path: 'map',
     component: MapComponent,
-    title: 'School-Lara'
+    title: 'School'
   },
   {
     path: 'fullCalendar',
     component: FullCalendarComponent,
-    title: 'School-Lara'
+    title: 'School'
   },
   {
     path: 'graphic',
     component: GraphicComponent,
-    title: 'School-Lara'
+    title: 'School'
   },
   {
     path: '**',
